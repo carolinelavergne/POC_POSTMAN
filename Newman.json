@@ -12,6 +12,16 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
+							"pm.sendRequest({",
+							"    url: \"https://\" + pm.environment.get(\"url\") + \"/api/v1/qualite_rivieres/station_pc?nom_cours_eau=\" + pm.variables.get(\"nom_cours_eau\"),",
+							"    method: \"GET\",",
+							"    header: {},",
+							"    body: {}",
+							"},",
+							"function (err, response) {",
+							"    var jsonData = response.json();",
+							"    pm.globals.set(\"code_departement_init\", jsonData.data[0].code_departement);",
+							"});",
 							""
 						],
 						"type": "text/javascript"
@@ -31,9 +41,9 @@
 							"});\r",
 							"\r",
 							"const jsonData = pm.response.json();\r",
-							"pm.test(\"Tous les éléments de la réponse sont sur le département : \" + pm.iterationData.get(\"code_departement_init\") + \" et sur le cours d'eau : \" + pm.variables.get(\"nom_cours_eau\"), function () {\r",
-							"    pm.expect(jsonData.data[0].code_departement).to.be.eq(pm.iterationData.get(\"code_departement_init\"));\r",
-							"    pm.expect(jsonData.data[0].nom_cours_eau).to.be.eq(pm.variables.get(\"nom_cours_eau\"));\r",
+							"pm.test(\"Tous les éléments de la réponse sont sur le département : \" + pm.globals.get(\"code_departement_init\") + \" et sur le cours d'eau : \" + pm.iterationData.get(\"nom_cours_eau\"), function () {\r",
+							"    pm.expect(jsonData.data[0].code_departement).to.be.eq(pm.globals.get(\"code_departement_init\"));\r",
+							"    pm.expect(jsonData.data[0].nom_cours_eau).to.be.eq(pm.iterationData.get(\"nom_cours_eau\"));\r",
 							"});\r",
 							""
 						],
@@ -94,12 +104,6 @@
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "nom_cours_eau",
-			"value": "Canal de la Deule"
 		}
 	]
 }
