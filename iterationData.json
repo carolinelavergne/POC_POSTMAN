@@ -1,3 +1,5 @@
-[{"nom_cours_eau":"Canal de la Deule"},
-{"nom_cours_eau":"Marque"},
-{"nom_cours_eau":"Canal de Roubaix"}]
+[
+	{"nom_cours_eau": "Canal de la Deule"},
+	{"nom_cours_eau": "Marque"},
+	{"nom_cours_eau": "Canal de Roubaix"}
+]
