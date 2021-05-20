@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+    tools {nodejs "nodejs"}
+    
+    stages {
+      stage("Npm package installation") {
+        steps {
+          sh 'npm install'
+        }
+      }
+        stage("Newman package installation") {
+        steps {
+          sh 'npm install -g newman'
+        }
+      }
+      stage("Run newman") {
+        steps {
+          sh 'newman run Newman.json -e Prod.json -d iterationData.json'
+        }
+      }
+    }
+}
+        
+        
