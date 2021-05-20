@@ -8,6 +8,11 @@ pipeline {
           sh 'npm install'
         }
       }
+        stage("Newman package installation") {
+        steps {
+          sh 'npm install newman'
+        }
+      }
       stage("Run newman") {
         steps {
           sh 'newman run Newman.json -e Prod.json -d iterationData.csv'
