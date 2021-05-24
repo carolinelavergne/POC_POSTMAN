@@ -18,11 +18,6 @@ pipeline {
         steps {
             sh 'newman run Newman.json -e Prod.json -d iterationData.csv -r cli,junit --reporter-junit-export newman.xml' 
         }
-        post { 
-            always { 
-                junit 'newman.xml'
-            }
-        }
       }
     }
 }
