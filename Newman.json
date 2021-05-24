@@ -36,7 +36,7 @@
 							"});\r",
 							"\r",
 							"pm.test(\"Le temps de réponse est inférieur à 60ms\", function () {\r",
-							"    //pm.expect(pm.response.responseTime).to.be.below(60);\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(60);\r",
 							"});\r",
 							"\r",
 							"pm.test(\"La réponse est correcte pour continuer les tests\", function () {\r",
