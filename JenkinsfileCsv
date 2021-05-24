@@ -14,16 +14,17 @@ pipeline {
           sh 'npm install -g newman'
         }
       }
-      stage("Run newman") {
-        try {
+      try {
+        stage("Run newman") {
             steps {
                 sh 'newman run Newman.json -e Prod.json -d iterationData.csv --reporters junit --reporter-junit-export newman.xml'
                 currentBuild.result = 'SUCCESS'
             }
-        } catch (Exception e) {
-            currentBuild.result = 'FAILURE'
-        }
+          }
+       } catch (Exception e) {
+        currentBuild.result = 'FAILURE'
       }
+      
       stage("Export junit results") {
         steps {
           junit 'newman.xml'
