@@ -16,7 +16,7 @@ pipeline {
       }
       stage("Run newman") {
         steps {
-            sh 'newman run Newman.json -e Prod.json -d iterationData.csv --reporters junit'
+            sh 'newman run Newman.json -e Prod.json -d iterationData.csv --reporters junit --reporter-junit-export "newman.xml"'
         } 
       }
     }
