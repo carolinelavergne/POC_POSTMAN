@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9e1b496d-bbe1-4ab8-a018-e5629e6fce63",
+		"_postman_id": "02479ff4-a266-4168-8524-bbf04e1d2b6b",
 		"name": "Newman",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -33,6 +33,10 @@
 						"exec": [
 							"pm.test(\"Le code retour est OK : 200\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Le temps de réponse est inférieur à 100ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
 							"});\r",
 							"\r",
 							"pm.test(\"La réponse est correcte pour continuer les tests\", function () {\r",
