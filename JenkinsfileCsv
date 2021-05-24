@@ -16,10 +16,14 @@ pipeline {
       }
       stage("Run newman") {
         steps {
-            sh 'newman run Newman.json -e Prod.json -d iterationData.csv -r cli,junit --reporter-junit-export newman.xml'
-            currentBuild.result = 'SUCCESS'
-            junit 'newman.xml'
-        } 
+            script {
+              try {
+                sh 'newman run Newman.json -e Prod.json -d iterationData.csv -r cli,junit --reporter-junit-export newman.xml'
+              } finally {
+                junit 'newman.xml'
+              }
+            }
+        }
       }
     }
 }
