@@ -42,7 +42,7 @@
 							"\r",
 							"const jsonData = pm.response.json();\r",
 							"pm.test(\"Tous les éléments de la réponse sont sur le département : \" + pm.globals.get(\"code_departement_init\") + \" et sur le cours d'eau : \" + pm.iterationData.get(\"nom_cours_eau\"), function () {\r",
-							"    pm.expect(jsonData.data[0].code_departement).not.to.be.eq(pm.globals.get(\"code_departement_init\"));\r",
+							"    pm.expect(jsonData.data[0].code_departement).to.be.eq(pm.globals.get(\"code_departement_init\"));\r",
 							"    pm.expect(jsonData.data[0].nom_cours_eau).to.be.eq(pm.iterationData.get(\"nom_cours_eau\"));\r",
 							"});\r",
 							""
