@@ -15,13 +15,14 @@ pipeline {
         }
       }
       stage("Run newman") {
-        steps {
-            try{
+        try {
+            steps {
                 sh 'newman run Newman.json -e Prod.json -d iterationData.csv --reporters junit --reporter-junit-export newman.xml'
                 currentBuild.result = 'SUCCESS'
-            } catch (Exception e) {
-                currentBuild.result = 'FAILURE'
             }
+        } catch (Exception e) {
+            currentBuild.result = 'FAILURE'
+        }
         }
       }
       stage("Export junit results") {
