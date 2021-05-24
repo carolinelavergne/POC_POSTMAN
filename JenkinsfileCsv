@@ -23,7 +23,6 @@ pipeline {
         } catch (Exception e) {
             currentBuild.result = 'FAILURE'
         }
-        }
       }
       stage("Export junit results") {
         steps {
