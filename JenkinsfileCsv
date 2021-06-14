@@ -4,11 +4,6 @@ pipeline {
     tools {nodejs "nodejs"}
     
     stages {
-        stage("Npm package installation") {
-            steps {
-                sh 'npm install'
-            }
-        }
         stage("Newman package installation") {
             steps {
                 sh 'npm install -g newman'
