@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "6b0d36ef-de09-432d-af89-4a52925d4a1e",
+		"name": "Newman Sans iterableData",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Sans iterableData",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"nom_cours_eau_2\", \"Marque\")",
+							"",
+							"pm.sendRequest({",
+							"    url: \"https://\" + pm.environment.get(\"url\") + \"/api/v1/qualite_rivieres/station_pc?nom_cours_eau=\" + pm.globals.get(\"nom_cours_eau_2\"),",
+							"    method: \"GET\",",
+							"    header: {},",
+							"    body: {}",
+							"},",
+							"function (err, response) {",
+							"    var jsonData = response.json();",
+							"    pm.globals.set(\"code_departement_init\", jsonData.data[0].code_departement);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Le code retour est OK : 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Le temps de réponse est inférieur à 300ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"La réponse est correcte pour continuer les tests\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});\r",
+							"\r",
+							"const jsonData = pm.response.json();\r",
+							"pm.test(\"Tous les éléments de la réponse sont sur le département : \" + pm.globals.get(\"code_departement_init\") + \" et sur le cours d'eau : \" + pm.globals.get(\"nom_cours_eau_2\"), function () {\r",
+							"    pm.expect(jsonData.data[0].code_departement).to.be.eq(pm.globals.get(\"code_departement_init\"));\r",
+							"    pm.expect(jsonData.data[0].nom_cours_eau).to.be.eq(pm.globals.get(\"nom_cours_eau_2\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://{{url}}/api/v1/qualite_rivieres/station_pc?code_departement={{code_departement_init}}&nom_cours_eau={{nom_cours_eau_2}}",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"qualite_rivieres",
+						"station_pc"
+					],
+					"query": [
+						{
+							"key": "code_departement",
+							"value": "{{code_departement_init}}"
+						},
+						{
+							"key": "nom_cours_eau",
+							"value": "{{nom_cours_eau_2}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
