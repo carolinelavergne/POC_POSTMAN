@@ -11,7 +11,7 @@ pipeline {
       }
       stage("Run newman") {
         steps {
-          sh 'newman run Newman.json -e Prod.json -d iterationData.json'
+          sh 'newman run "Newman Avec IterableData.json" -e Prod.json -d iterationData.json'
         }
       }
     }
