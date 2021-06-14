@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'newman run "Newman Sans IterableData.json" -e Prod.json -d iterationData.csv -r cli,junit --reporter-junit-export newman.xml'
+                        sh 'newman run "Newman Sans IterableData.json" -e Prod.json -r cli,junit --reporter-junit-export newman.xml'
                         currentBuild.result = 'SUCCESS'
                     } catch (Exception ex) {
                         currentBuild.result = 'FAILURE'
