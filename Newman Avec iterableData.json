@@ -13,7 +13,7 @@
 					"script": {
 						"exec": [
 							"pm.sendRequest({",
-							"    url: \"https://\" + pm.environment.get(\"url\") + \"/api/v1/qualite_rivieres/station_pc?nom_cours_eau=\" + pm.variables.get(\"nom_cours_eau\"),",
+							"    url: \"https://\" + pm.environment.get(\"url\") + \"/api/v1/qualite_rivieres/station_pc?nom_cours_eau=\" + pm.iterationData.get(\"nom_cours_eau\"),",
 							"    method: \"GET\",",
 							"    header: {},",
 							"    body: {}",
