@@ -11,7 +11,7 @@ pipeline {
       }
       stage("Run newman") {
         steps {
-          sh 'newman run Webinaire.postman_collection.json -e ProdWebinaire.postman_environment.json '
+          sh 'newman run Webinaire/Webinaire.postman_collection.json -e Webinaire/ProdWebinaire.postman_environment.json '
         }
       }
     }
